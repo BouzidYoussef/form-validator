@@ -23,31 +23,20 @@ const password2= document.getElementById('password2');
         return re.test(String(email).toLowerCase()); 
     }
 
+    //check required fields
+    function checkRequired(input){
+        inputArr.forEach(function(input){
+                if(input.value.trim() === ''){
+                    showError(input, 'is required')
+                } else {
+                    showSuccess(input)
+                }
+        })
+    }
+
     //Event Listeners
     form.addEventListener('submit', function(e){
         e.preventDefault();
-        if(username.value === ''){
-            showError('username is required')
-        }else {
-            showSuccess(username);
-        }
-        if(email.value === ''){
-            showError('Email is required')
-        } else if(!isValidEmail(email.value)){
-            showError('Email is not valid')
-        
-        }else {
-            showSuccess(email);
-        }
-        if(password.value === ''){
-            showError('Password is required')
-        }else {
-            showSuccess(password);
-        }
-        if(password2.value === ''){
-            showError('Password confirmation is required')
-        }else {
-            showSuccess(password2);
-        }
+        checkRequired([username, email, password, password2])
 
      })
