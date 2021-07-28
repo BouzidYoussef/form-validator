@@ -19,7 +19,8 @@ const password2= document.getElementById('password2');
 
     //Check email is valid
     function isValidEmail(email){
-        
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase()); 
     }
 
     //Event Listeners
@@ -32,6 +33,9 @@ const password2= document.getElementById('password2');
         }
         if(email.value === ''){
             showError('Email is required')
+        } else if(!isValidEmail(email.value)){
+            showError('Email is not valid')
+        
         }else {
             showSuccess(email);
         }
